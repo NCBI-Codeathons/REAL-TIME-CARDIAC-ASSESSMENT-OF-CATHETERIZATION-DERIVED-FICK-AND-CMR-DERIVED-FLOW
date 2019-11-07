@@ -10,4 +10,4 @@ Our goal is to improve workflow, reliability, and reproducibility by improving t
 
 Team Lead: Yousef Arar, MD, MPH, Pediatric Cardiology, www.utsouthwestern.edu/education/medical-school/departments/pediatrics/divisions/cardiology/
 
-![alt text] (https://images.squarespace-cdn.com/content/v1/5b3ffc3fcef3721bd81d8c60/1559313457968-QPMI423J93ITGQAD7VTW/ke17ZwdGBToddI8pDm48kCGpf5kg6I8N1YOl6KoZZklZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIekhbcyIhvVCXt9CC6snuWfXbYWE8-PqfAVzApY0fWXIKMshLAGzx4R3EDFOm1kBS/arar1.jpg?format=2500w)
+![alt text](https://images.squarespace-cdn.com/content/v1/5b3ffc3fcef3721bd81d8c60/1559313457968-QPMI423J93ITGQAD7VTW/ke17ZwdGBToddI8pDm48kCGpf5kg6I8N1YOl6KoZZklZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIekhbcyIhvVCXt9CC6snuWfXbYWE8-PqfAVzApY0fWXIKMshLAGzx4R3EDFOm1kBS/arar1.jpg?format=2500w)
