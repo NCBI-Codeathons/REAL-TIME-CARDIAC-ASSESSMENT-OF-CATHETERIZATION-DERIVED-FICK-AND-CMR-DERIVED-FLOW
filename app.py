@@ -32,7 +32,7 @@ app = Flask(__name__)
 
 @app.route('/fick_room_air', methods=["POST","GET"])
 # @auth.login_required
-def fick_room_air(tables=None, err_msg=None, show_exp=False):
+def fick_room_air(fra_out={}, err_msg=None, show_exp=False):
     if request.method == 'POST':
         if (request.form['pat_id'] and request.form['vo2'] and request.form['hg'] and request.form['pv'] and request.form['pa']
         and request.form['ao'] and request.form['mv'] and request.form['tp'] and request.form['ts']):
@@ -60,9 +60,15 @@ def fick_room_air(tables=None, err_msg=None, show_exp=False):
             data_out=[[pat_id,str(qp),str(qs),str(qpqs),str(pvr),str(svr),str(rprs)]]
             tables = pd.DataFrame(data = data_out, columns = ['patient_id','Qp','QS','Qp/Qs','PVR','SVR','Rp/Rs'])
             tables.to_csv('fick_room_air.csv', index=False)
-            tables=tables.to_html(classes='data', index=False)
+            fra_out={}
+            fra_out['out_qp']=qp
+            fra_out['out_qs']=qs
+            fra_out['out_qpqs']=qpqs
+            fra_out['out_pvr']=pvr
+            fra_out['out_svr']=svr
+            fra_out['out_rprs']=rprs
 
-            return render_template('fick_room_air.html',  tables=[tables], show_exp=True)
+            return render_template('fick_room_air.html', **fra_out , show_exp=True)
         return render_template('fick_room_air.html',  err_msg='fill all inputs')
     return render_template('fick_room_air.html')
 
