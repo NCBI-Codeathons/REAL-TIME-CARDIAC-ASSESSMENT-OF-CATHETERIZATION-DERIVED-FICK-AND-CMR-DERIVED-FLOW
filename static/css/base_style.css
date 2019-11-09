@@ -1,0 +1,74 @@
+* {
+ box-sizing: border-box;
+}
+.header img {
+ float: left;
+ width: 80px;
+ height: 80px;
+ background: #555;
+}
+.header h1 {
+ position: relative;
+ top: 18px;
+ left: 10px;
+ font-family: 'Open Sans', sans-serif;
+ color: #316181;
+ margin-top: 0;
+}
+body {
+ background-color: #faf8f9;
+ padding: 20px;
+ font-family: Arial;
+}
+
+h2{
+	font-family: 'Open Sans', sans-serif;
+ color: #73a955;
+}
+
+h3{
+	font-family: 'Noto Serif', serif;
+}
+p{
+	font-family: 'Noto Serif', serif;
+}
+/* Center website */
+.main {
+ max-width: 1000px;
+ margin: auto;
+}
+h1 {
+ font-size: 50px;
+ word-break: break-all;
+}
+.row {
+ margin: 8px -16px;
+ padding: 10px
+}
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+ padding: 8px;
+}
+/* Create 2 equal columns that floats next to each other */
+.column {
+ float: left;
+ width: 50%;
+ padding: 8px;
+}
+
+
+/* Clear floats after rows */
+.row:after {
+ content: "";
+ display: table;
+ clear: both;
+}
+/* Content */
+
+/* Responsive layout - makes a one column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+ .column {
+   width: 100%;
+ }
+}

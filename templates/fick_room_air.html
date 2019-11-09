@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Fick</h3>
+<hr>
+<h3>Room Air</h3>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<p>&nbsp;</p>
+<div id="content">
+
+<form action="/fick_room_air" method="post" >
+  Patient ID:<br>
+  <input type="number" name="pat_id" value="{{ request.form['pat_id'] }}"">
+  <br>
+  VO2:<br>
+  <input type="number" name="vo2">
+  <br>
+  Hg:<br>
+  <input type="number" step="0.1" name="hg">
+  <br>
+  PV(sat):<br>
+  <input type="number" step="0.01" name="pv">
+  <br>
+  LPA(sat):<br>
+  <input type="number" step="0.01" name="lpa">
+  <br>
+  Ao(sat):<br>
+  <input type="number" step="0.01" name="ao">
+  <br>
+  MV(sat):<br>
+  <input type="number" step="0.01" name="mv">
+  <br>
+  Transpulmonary:<br>
+  <input type="number" name="tp">
+  <br>
+  Transsystemic:<br>
+  <input type="number" name="ts">
+  <br>
+  <br>
+  <input type="submit" value="calculate">
+</form> 
+
+{{err_msg}}
+<hr>
+<div id='content'>
+  {% for table in tables %}
+            {{ table|safe }}
+  {% endfor %}
+</div>
+
+</div>
+{% endblock %}
