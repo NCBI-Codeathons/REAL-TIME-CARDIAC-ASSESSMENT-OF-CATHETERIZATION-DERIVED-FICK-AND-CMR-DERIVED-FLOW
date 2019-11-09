@@ -13,35 +13,35 @@
       <td align="left"><input type="text" name="pat_id" value="{{ request.form['pat_id'] }}"></td>
     </tr>
     <tr>
-      <td align="right">VO2</td>
+      <td align="right">VO2 (ml/min/m^2)</td>
       <td align="left"><input type="number" name="vo2" value="{{ request.form['vo2'] }}"></td>
     </tr>
     <tr>
-       <td align="right">Hemoglobin</td>
+       <td align="right">Hemoglobin (gm/dL)</td>
        <td align="left"><input type="number" step="0.1" name="hg" value="{{ request.form['hg'] }}"></td>
     </tr>
     <tr>
-      <td align="right">PV(sat)</td>
+      <td align="right">PV (sat)</td>
       <td align="left"><input type="number" name="pv"  value="{{ request.form['pv'] }}"></td>
     </tr>
     <tr>
-      <td align="right">PA(sat)</td>
+      <td align="right">PA (sat)</td>
       <td align="left"><input type="number" name="pa"  value="{{ request.form['pa'] }}"></td>
     </tr>
     <tr>
-      <td align="right">Ao(sat)</td>
+      <td align="right">Ao (sat)</td>
       <td align="left"><input type="number" name="ao"  value="{{ request.form['ao'] }}"></td>
     </tr>
     <tr>
-      <td align="right">MV(sat)</td>
+      <td align="right">MV (sat)</td>
       <td align="left"><input type="number" name="mv"  value="{{ request.form['mv'] }}"></td>
     </tr>
     <tr>
-      <td align="right">Transpulmonary</td>
+      <td align="right">Transpulmonary (mmHg)</td>
       <td align="left"><input type="number" name="tp"  value="{{ request.form['tp'] }}"></td>
     </tr>
     <tr>
-      <td align="right">Transsystemic</td>
+      <td align="right">Transsystemic (mmHg)</td>
       <td align="left"><input type="number" name="ts"  value="{{ request.form['ts'] }}"></td>
     </tr>
 
@@ -55,11 +55,11 @@
 <div id='content'>
   <table class='input_table' style="width:400px">
     <tr>
-      <td align="right">Qp(ml/sec)</td>
+      <td align="right">Qp (L/min/m^2)</td>
       <td align="left">{{ out_qp }}</td>
     </tr>
     <tr>
-      <td align="right">Qs(ml/sec)</td>
+      <td align="right">Qs (L/min/m^2)</td>
       <td align="left">{{ out_qs }}</td>
     </tr>
     <tr>
@@ -67,11 +67,11 @@
       <td align="left">{{ out_qpqs }}</td>
     </tr>
     <tr>
-      <td align="right">PVR</td>
+      <td align="right">PVR (U*m^2)</td>
       <td align="left">{{ out_pvr }}</td>
     </tr>
     <tr>
-      <td align="right">SVR</td>
+      <td align="right">SVR (U*m^2)</td>
       <td align="left">{{ out_svr }}</td>
     </tr>
     <tr>
