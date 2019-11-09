@@ -6,7 +6,6 @@ import json
 import numpy as np
 import pandas as pd
 
-
 app = Flask(__name__)
 # auth = HTTPBasicAuth()
 
@@ -48,17 +47,17 @@ def fick_room_air(fra_out={}, err_msg=None, show_exp=False):
             if (pv-pa)==0:
                 qp="-"
             else: 
-                qp=vo2/((13.6*hg)*(pv-pa))
+                qp=round(vo2/((13.6*hg)*(pv-pa)),2)
             if (ao-mv)==0:
                 qs="-"
             else:
-                qs=vo2/((13.6*hg)*(ao-mv))
-            qpqs=qp/qs
-            pvr=tp/qp
-            svr=ts/qs
-            rprs=pvr/svr
+                qs=round(vo2/((13.6*hg)*(ao-mv)),2)
+            qpqs=round(qp/qs,2)
+            pvr=round(tp/qp,2)
+            svr=round(ts/qs,2)
+            rprs=round(pvr/svr,2)
             data_out=[[pat_id,str(qp),str(qs),str(qpqs),str(pvr),str(svr),str(rprs)]]
-            tables = pd.DataFrame(data = data_out, columns = ['patient_id','Qp','QS','Qp/Qs','PVR','SVR','Rp/Rs'])
+            tables = pd.DataFrame(data = data_out, columns = ['patient_id','Qp (L/min/m^2)','QS (L/min/m^2)','Qp/Qs','PVR (U*m^2)','SVR (U*m^2)','Rp/Rs'])
             tables.to_csv('fick_room_air.csv', index=False)
             fra_out={}
             fra_out['out_qp']=qp
