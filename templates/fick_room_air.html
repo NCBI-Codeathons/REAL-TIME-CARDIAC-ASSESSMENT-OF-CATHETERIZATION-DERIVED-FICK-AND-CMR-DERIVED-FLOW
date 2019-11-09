@@ -7,7 +7,7 @@
 <p>&nbsp;</p>
 <div id="content">
 <form action="/fick_room_air" method="post" >
-  <table>
+  <table style="width: 400px">
     <tr>
       <td align="right">Patient ID</td>
       <td align="left"><input type="text" name="pat_id" value="{{ request.form['pat_id'] }}"></td>
@@ -46,20 +46,39 @@
     </tr>
 
   </table>
-
-      <input class="btn btn-default btn-sm" type="submit"  value="calculate">
+      <br>
+      <input class="btn btn-default btn-sm" type="submit"  value="Calculate">
 </form> 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 {{err_msg}}
 <hr>
 <div id='content'>
-  {{ out_qp }}
-  {{ out_qs }}
-  {{ out_qpqs }}
-  {{ out_pvr }}
-  {{ out_svr }}
-  {{ out_rprs }}
-
+  <table class='input_table' style="width:400px">
+    <tr>
+      <td align="right">Qp(ml/sec)</td>
+      <td align="left">{{ out_qp }}</td>
+    </tr>
+    <tr>
+      <td align="right">Qs(ml/sec)</td>
+      <td align="left">{{ out_qs }}</td>
+    </tr>
+    <tr>
+      <td align="right">Qp:Qs</td>
+      <td align="left">{{ out_qpqs }}</td>
+    </tr>
+    <tr>
+      <td align="right">PVR</td>
+      <td align="left">{{ out_pvr }}</td>
+    </tr>
+    <tr>
+      <td align="right">SVR</td>
+      <td align="left">{{ out_svr }}</td>
+    </tr>
+    <tr>
+      <td align="right">Rp:Rs</td>
+      <td align="left">{{ out_rprs }}</td>
+    </tr>
+  </table>
   {% if show_exp is sameas true %}
     <br>
     <button class="btn btn-default btn-sm" onclick="window.location.href = 'export_fick_room_air';">Export to CSV
