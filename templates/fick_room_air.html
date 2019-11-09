@@ -11,25 +11,25 @@
 
 <form action="/fick_room_air" method="post" >
   Patient ID:<br>
-  <input type="number" name="pat_id" value="{{ request.form['pat_id'] }}"">
+  <input type="text" name="pat_id" value="{{ request.form['pat_id'] }}">
   <br>
   VO2:<br>
   <input type="number" name="vo2">
   <br>
-  Hg:<br>
+  Hemoglobin:<br>
   <input type="number" step="0.1" name="hg">
   <br>
   PV(sat):<br>
-  <input type="number" step="0.01" name="pv">
+  <input type="number" name="pv">
   <br>
-  LPA(sat):<br>
-  <input type="number" step="0.01" name="lpa">
+  PA(sat):<br>
+  <input type="number" name="pa">
   <br>
   Ao(sat):<br>
-  <input type="number" step="0.01" name="ao">
+  <input type="number" name="ao">
   <br>
   MV(sat):<br>
-  <input type="number" step="0.01" name="mv">
+  <input type="number" name="mv">
   <br>
   Transpulmonary:<br>
   <input type="number" name="tp">
@@ -38,15 +38,24 @@
   <input type="number" name="ts">
   <br>
   <br>
-  <input type="submit" value="calculate">
+  <input class="btn btn-default btn-sm" type="submit"  value="calculate">
 </form> 
-
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 {{err_msg}}
 <hr>
 <div id='content'>
   {% for table in tables %}
             {{ table|safe }}
   {% endfor %}
+
+  {% if show_exp is sameas true %}
+    <br>
+    <button class="btn btn-default btn-sm" onclick="window.location.href = 'export_fick_room_air';">Export to CSV
+    </button>
+  {% else %}
+     <hr>
+  {% endif %}
+        
 </div>
 
 </div>

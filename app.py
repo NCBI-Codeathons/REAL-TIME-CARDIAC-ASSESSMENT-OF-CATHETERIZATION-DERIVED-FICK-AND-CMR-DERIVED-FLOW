@@ -32,22 +32,23 @@ app = Flask(__name__)
 
 @app.route('/fick_room_air', methods=["POST","GET"])
 # @auth.login_required
-def fick_room_air(tables=None, err_msg=None):
+def fick_room_air(tables=None, err_msg=None, show_exp=False):
     if request.method == 'POST':
-        if (request.form['vo2'] and request.form['hg'] and request.form['pv'] and request.form['lpa']
+        if (request.form['pat_id'] and request.form['vo2'] and request.form['hg'] and request.form['pv'] and request.form['pa']
         and request.form['ao'] and request.form['mv'] and request.form['tp'] and request.form['ts']):
+            pat_id=request.form['pat_id']
             vo2=float(request.form['vo2'])
             hg=float(request.form['hg'])
-            pv=float(request.form['pv'])
-            lpa=float(request.form['lpa'])
-            ao=float(request.form['ao'])
-            mv=float(request.form['mv'])
+            pv=float(request.form['pv'])*0.01
+            pa=float(request.form['pa'])*0.01
+            ao=float(request.form['ao'])*0.01
+            mv=float(request.form['mv'])*0.01
             tp=float(request.form['tp'])
             ts=float(request.form['ts'])
-            if (pv-lpa)==0:
+            if (pv-pa)==0:
                 qp="-"
             else: 
-                qp=vo2/((13.6*hg)*(pv-lpa))
+                qp=vo2/((13.6*hg)*(pv-pa))
             if (ao-mv)==0:
                 qs="-"
             else:
@@ -56,13 +57,25 @@ def fick_room_air(tables=None, err_msg=None):
             pvr=tp/qp
             svr=ts/qs
             rprs=pvr/svr
-            data_out=[[str(qp),str(qs),str(qpqs),str(pvr),str(svr),str(rprs)]]
-            tables = pd.DataFrame(data = data_out, columns = ['Qp','QS','Qp/Qs','PVR','SVR','Rp/Rs'])
+            data_out=[[pat_id,str(qp),str(qs),str(qpqs),str(pvr),str(svr),str(rprs)]]
+            tables = pd.DataFrame(data = data_out, columns = ['patient_id','Qp','QS','Qp/Qs','PVR','SVR','Rp/Rs'])
+            tables.to_csv('fick_room_air.csv', index=False)
             tables=tables.to_html(classes='data', index=False)
-            return render_template('fick_room_air.html',  tables=[tables])
+
+            return render_template('fick_room_air.html',  tables=[tables], show_exp=True)
         return render_template('fick_room_air.html',  err_msg='fill all inputs')
     return render_template('fick_room_air.html')
 
+@app.route('/export_fick_room_air')
+# @auth.login_required
+def export_fick_room():
+    df= pd.read_csv('fick_room_air.csv')
+    csv=df.to_csv(index=False)
+    return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition":
+                 "attachment; filename=fick_room_air.csv"})
 
 if __name__ == '__main__':
     app.run(debug=True)
