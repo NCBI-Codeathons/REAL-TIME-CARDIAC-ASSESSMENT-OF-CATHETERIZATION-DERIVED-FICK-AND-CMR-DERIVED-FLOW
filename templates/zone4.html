@@ -1,7 +1,79 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{fick_air_df}}
-{{fick_nitric_oxide_df}}
-{{flow_df}}
+
+<table>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <col width=10%>
+        <tr class="d-flex">
+          <th><font color=#316181 font-size=20px>Zone 4</font></th>
+          <th>Qp</th>
+          <th>Qep</th>
+          <th>Qs</th>
+          <th>Qes</th>
+          <th>Qp/Qs</th>
+          <th>Qep/Qes</th>
+          <th>Qep/Qs</th>
+          <th>PVR</th>
+          <th>SVR</th>
+          <th>Rp/Rs</th>
+        </tr>
+        <tr class="d-flex">
+          <td>Fick Room Air</td>
+          <td><div class='fra-qp'>test</div></td>
+          <td><div class='fra-qep'>-</div></td>
+          <td><div class='fra-qs'>test</div></td>
+          <td><div class='fra-qes'>-</div></td>
+          <td><div class='fra-qpqs'>test</div></td>
+          <td><div class='fra-qepqes'>-</div></td>
+          <td><div class='fra-qepqs'>-</div></td>
+          <td><div class='fra-pvr'>test</div></td>
+          <td><div class='fra-svr'>test</div></td>
+          <td><div class='fra-rprs'>test</div></td>
+        </tr>
+        <tr class="d-flex">
+          <td>Fick Nitric Oxide</td>
+          <td><div class='fno-qp'>test</div></td>
+          <td><div class='fno-qep'>-</div></td>
+          <td><div class='fno-qs'>test</div></td>
+          <td><div class='fno-qes'>-</div></td>
+          <td><div class='fno-qpqs'>test</div></td>
+          <td><div class='fno-qepqes'>-</div></td>
+          <td><div class='fno-qepqs'>-</div></td>
+          <td><div class='fno-pvr'>test</div></td>
+          <td><div class='fno-svr'>test</div></td>
+          <td><div class='fno-rprs'>test</div></td>
+        </tr>
+        <tr class="d-flex">
+          <td>MR Flow</td>
+          <td><div class='fl-qp'>test</div></td>
+          <td><div class='fl-qep'>test</div></td>
+          <td><div class='fl-qs'>test</div></td>
+          <td><div class='fl-qes'>test</div></td>
+          <td><div class='fl-qpqs'>test</div></td>
+          <td><div class='fl-qepqes'>test</div></td>
+          <td><div class='fl-qepqs'>test</div></td>
+          <td><div class='fl-pvr'>test</div></td>
+          <td><div class='fl-svr'>test</div></td>
+          <td><div class='fl-rprs'>test</div></td>
+        </tr>
+        
+        </table>
+
+
+
+
+
+
+
+
+
 {% endblock %}

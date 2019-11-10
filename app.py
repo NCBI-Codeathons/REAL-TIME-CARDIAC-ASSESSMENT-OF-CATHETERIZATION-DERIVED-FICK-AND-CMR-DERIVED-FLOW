@@ -33,7 +33,7 @@ app = Flask(__name__)
 def index_page():
     return render_template('index.html')
 
-@app.route('/Zone4')
+@app.route('/zone4')
 def Zone4():
 
     return render_template('zone4.html')

@@ -21,7 +21,22 @@ body {
  padding: 20px;
  font-family: Arial;
 }
+#topheader .navbar-nav li > a {
+	text-transform: capitalize;
+	color: #333;
+	transition: background-color .2s, color .2s;
+	
+	&:hover,
+	&:focus {
+		background-color: #333;
+		color: #fff;
+	}
+}
 
+#topheader .navbar-nav li.active > a {
+	background-color: #333;
+	color: #fff;
+}
 h2{
 	font-family: 'Open Sans', sans-serif;
  color: #73a955;
