@@ -5,6 +5,7 @@ import hashlib, os, binascii
 import json
 import numpy as np
 import pandas as pd
+from os import path
 
 app = Flask(__name__)
 # auth = HTTPBasicAuth()
@@ -56,9 +57,9 @@ def fick_room_air(fra_out={}, err_msg=None, show_exp=False):
             pvr=round(tp/qp,2)
             svr=round(ts/qs,2)
             rprs=round(pvr/svr,2)
-            data_out=[[pat_id,str(qp),str(qs),str(qpqs),str(pvr),str(svr),str(rprs)]]
-            tables = pd.DataFrame(data = data_out, columns = ['patient_id','Qp (L/min/m^2)','QS (L/min/m^2)','Qp/Qs','PVR (U*m^2)','SVR (U*m^2)','Rp/Rs'])
-            tables.to_csv('fick_room_air.csv', index=False)
+            data_out=[[pat_id, str(vo2),str(hg),str(pv),str(pa),str(ao),str(mv),str(tp),str(ts),str(qp),str(qs),str(qpqs),str(pvr),str(svr),str(rprs)]]
+            tables = pd.DataFrame(data = data_out, columns = ['patient_id','VO2','Hemoglobin','PV(sat)','PA(sat)','Ao(sat)','MV(sat)','TransPulmonary','TransSystemic','Qp (L/min/m^2)','QS (L/min/m^2)','Qp/Qs','PVR (U*m^2)','SVR (U*m^2)','Rp/Rs'])
+            tables.to_csv('data/fick_room_air.csv', index=False)
             fra_out={}
             fra_out['out_qp']=qp
             fra_out['out_qs']=qs
@@ -66,7 +67,6 @@ def fick_room_air(fra_out={}, err_msg=None, show_exp=False):
             fra_out['out_pvr']=pvr
             fra_out['out_svr']=svr
             fra_out['out_rprs']=rprs
-
             return render_template('fick_room_air.html', **fra_out , show_exp=True)
         return render_template('fick_room_air.html',  err_msg='fill all inputs')
     return render_template('fick_room_air.html')
@@ -74,13 +74,23 @@ def fick_room_air(fra_out={}, err_msg=None, show_exp=False):
 @app.route('/export_fick_room_air')
 # @auth.login_required
 def export_fick_room():
-    df= pd.read_csv('fick_room_air.csv')
+    df= pd.read_csv('data/fick_room_air.csv')
     csv=df.to_csv(index=False)
     return Response(
         csv,
         mimetype="text/csv",
         headers={"Content-disposition":
                  "attachment; filename=fick_room_air.csv"})
+
+# @app.route('/streaming')
+# def streaming():
+#     if (path.exists("./data/fick_room_air.csv")):
+#         fra_df=pd.read_csv('./data/fick_room_air.csv')
+#         fra_dict=fra_df.to_dict('r') 
+
+#         return render_template('stream.html',)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
