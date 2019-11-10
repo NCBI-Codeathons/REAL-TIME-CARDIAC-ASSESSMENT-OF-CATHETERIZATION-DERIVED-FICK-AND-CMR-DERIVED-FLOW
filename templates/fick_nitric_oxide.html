@@ -1,19 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>Fick/Room Air</h3>
+<h3>Fick</h3>
+<hr>
+<h3>Nitric Oxide</h3>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
 <p>&nbsp;</p>
 <div id="content">
-<form action="/fick_room_air" method="post" >
+
+<form action="/fick_nitric_oxide" method="post" >
   <table style="width: 400px">
     <tr>
       <td align="right">Patient ID</td>
       <td align="left"><input type="text" name="pat_id" value="{{ request.form['pat_id'] }}"></td>
     </tr>
     <tr>
-      <td align="right">VO2 (ml/min/m^2)</td>
+      <td align="right">VO2 (ml/min/m^2) </td>
       <td align="left"><input type="number" name="vo2" value="{{ request.form['vo2'] }}"></td>
     </tr>
     <tr>
@@ -21,20 +24,36 @@
        <td align="left"><input type="number" step="0.1" name="hg" value="{{ request.form['hg'] }}"></td>
     </tr>
     <tr>
-      <td align="right">PV (sat)</td>
+      <td align="right">PV(sat)</td>
       <td align="left"><input type="number" name="pv"  value="{{ request.form['pv'] }}"></td>
     </tr>
     <tr>
-      <td align="right">PA (sat)</td>
+      <td align="right">PV-PaO2</td>
+      <td align="left"><input type="number" name="pv_paO2"  value="{{ request.form['pv_paO2'] }}"></td>
+    </tr>
+    <tr>
+      <td align="right">PA(sat)</td>
       <td align="left"><input type="number" name="pa"  value="{{ request.form['pa'] }}"></td>
     </tr>
     <tr>
-      <td align="right">Ao (sat)</td>
+      <td align="right">PA-PaO2</td>
+      <td align="left"><input type="number" name="pa_paO2"  value="{{ request.form['pa_paO2'] }}"></td>
+    </tr>
+    <tr>
+      <td align="right">Ao(sat)</td>
       <td align="left"><input type="number" name="ao"  value="{{ request.form['ao'] }}"></td>
     </tr>
     <tr>
-      <td align="right">MV (sat)</td>
+      <td align="right">Ao-PaO2</td>
+      <td align="left"><input type="number" name="ao_paO2"  value="{{ request.form['ao_paO2'] }}"></td>
+    </tr>
+    <tr>
+      <td align="right">MV(sat)</td>
       <td align="left"><input type="number" name="mv"  value="{{ request.form['mv'] }}"></td>
+    </tr>
+    <tr>
+      <td align="right">MV-PaO2</td>
+      <td align="left"><input type="number" name="mv_paO2"  value="{{ request.form['mv_paO2'] }}"></td>
     </tr>
     <tr>
       <td align="right">TransPulmonary (mmHg)</td>
@@ -44,50 +63,89 @@
       <td align="right">TransSystemic (mmHg)</td>
       <td align="left"><input type="number" name="ts"  value="{{ request.form['ts'] }}"></td>
     </tr>
-
-  </table>
-      <br>
-      <input class="btn btn-default btn-sm" type="submit"  value="Calculate">
+  
+</table>
+    <br>
+      <input class="btn btn-default btn-sm" type="submit"  value="calculate">
 </form> 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 {{err_msg}}
 <hr>
+
 <div id='content'>
+
   <table class='input_table' style="width:400px">
+
     <tr>
+
       <td align="right">Qp (L/min/m^2)</td>
+
       <td align="left">{{ out_qp }}</td>
+
     </tr>
+
     <tr>
+
       <td align="right">Qs (L/min/m^2)</td>
+
       <td align="left">{{ out_qs }}</td>
+
     </tr>
+
     <tr>
+
       <td align="right">Qp:Qs</td>
+
       <td align="left">{{ out_qpqs }}</td>
+
     </tr>
+
     <tr>
+
       <td align="right">PVR (U*m^2)</td>
+
       <td align="left">{{ out_pvr }}</td>
+
     </tr>
+
     <tr>
+
       <td align="right">SVR (U*m^2)</td>
+
       <td align="left">{{ out_svr }}</td>
+
     </tr>
+
     <tr>
+
       <td align="right">Rp:Rs</td>
+
       <td align="left">{{ out_rprs }}</td>
+
     </tr>
+
   </table>
+
   {% if show_exp is sameas true %}
+
     <br>
-    <button class="btn btn-default btn-sm" onclick="window.location.href = 'export_fick_room_air';">Export to CSV
+
+    <button class="btn btn-default btn-sm" onclick="window.location.href = 'export_fick_nitric';">Export to CSV
+
     </button>
+
   {% else %}
+
      <hr>
+
   {% endif %}
+
         
-</div>
 
 </div>
+
+
+
+</div>
+
 {% endblock %}

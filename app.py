@@ -29,6 +29,14 @@ app = Flask(__name__)
 #         return pwdhash == stored_password
 #     return False
 
+@app.route('/')
+def index_page():
+    return render_template('index.html')
+
+@app.route('/Zone4')
+def Zone4():
+
+    return render_template('zone4.html')
 
 @app.route('/fick_room_air', methods=["POST","GET"])
 # @auth.login_required
@@ -81,6 +89,64 @@ def export_fick_room():
         mimetype="text/csv",
         headers={"Content-disposition":
                  "attachment; filename=fick_room_air.csv"})
+
+@app.route('/fick_nitric_oxide', methods=["POST","GET"])
+# @auth.login_required
+def fick_nitric_oxide(tables=None, err_msg=None, show_exp=False):
+    if request.method == 'POST':
+        if (request.form['pat_id'] and request.form['vo2'] and request.form['hg'] and request.form['pv'] and request.form['pv_paO2']
+        and request.form['pa'] and request.form['pa_paO2'] and request.form['ao'] and request.form['ao_paO2']
+        and request.form['mv'] and request.form['mv_paO2'] and request.form['tp'] and request.form['ts']):
+            pat_id=request.form['pat_id']
+            vo2=float(request.form['vo2'])
+            hg=float(request.form['hg'])
+            pv=float(request.form['pv'])*0.01
+            pv_paO2=float(request.form['pv_paO2'])
+            pa=float(request.form['pa'])*0.01
+            pa_paO2=float(request.form['pa_paO2'])
+            ao=float(request.form['ao'])*0.01
+            ao_paO2=float(request.form['ao_paO2'])
+            mv=float(request.form['mv'])*0.01
+            mv_paO2=float(request.form['mv_paO2'])
+            tp=float(request.form['tp'])
+            ts=float(request.form['ts'])
+            if (pv-pa)==0:
+                qp="-"
+            else: 
+                qp=round(vo2/((13.6*hg*pv+(0.03*pv_paO2)-(13.6*hg*pa+(0.03*pa_paO2)))),2)
+            if (ao-mv)==0:
+                qs="-"
+            else:
+                qs=round(vo2/((13.6*hg*ao+(0.03*ao_paO2)-(13.6*hg*mv+(0.03*mv_paO2)))),2)
+            qpqs=round(qp/qs,2)
+            pvr=round(tp/qp,2)
+            svr=round(ts/qs,2)
+            rprs=round(pvr/svr,2)
+            data_out=[[pat_id,str(vo2),str(hg),str(pv),str(pv_paO2),str(pa),str(pa_paO2),str(ao),str(ao_paO2),str(mv),str(mv_paO2),str(tp),str(ts),str(qp),str(qs),str(qpqs),str(pvr),str(svr),str(rprs)]]
+            tables = pd.DataFrame(data = data_out, columns = ['patient_id','VO2','Hemoglobin','PV(sat)','PV_PaO2','PA(sat)','PA_PaO2','Ao(sat)','AO_PaO2','MV(sat)','MV_PaO2','TransPulmonary','TransSystemic','Qp (L/min/m^2)','QS (L/min/m^2)','Qp/Qs','PVR (U*m^2)','SVR (U*m^2)','Rp/Rs'])
+            tables.to_csv('data/fick_nitric_oxide.csv', index=False)
+            fra_out={}
+            fra_out['out_qp']=qp
+            fra_out['out_qs']=qs
+            fra_out['out_qpqs']=qpqs
+            fra_out['out_pvr']=pvr
+            fra_out['out_svr']=svr
+            fra_out['out_rprs']=rprs
+            return render_template('fick_nitric_oxide.html', **fra_out, show_exp=True)
+        return render_template('fick_nitric_oxide.html',  err_msg='fill all inputs')
+    return render_template('fick_nitric_oxide.html')
+
+@app.route('/export_fick_nitric')
+# @auth.login_required
+def export_fick_nitric():
+    df= pd.read_csv('data/fick_nitric_oxide.csv')
+    csv=df.to_csv(index=False)
+    return Response(
+        csv,
+        mimetype="text/csv",
+        headers={"Content-disposition":
+                 "attachment; filename=fick_nitric_oxide.csv"})
+
 
 # @app.route('/streaming')
 # def streaming():
