@@ -3,13 +3,13 @@
 
  - install python 3
  - add python to your path
- - If Python is installed correctly, the following command should print the Python version number
+ - If Python is installed correctly and added to path, the following command should print the Python version number
  ```sh
 $ Python --version
 ```
  - In the terminal, go into the project's directory and run the following command to install the requirements
   ```sh
-$ ...
+$ pip install -r requirements.txt
 ```
  - add FLASK_APP to path
  ```sh
