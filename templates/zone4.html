@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script type="text/javascript" src="/static/js/zone4_static.js" charset="utf-8"></script>
 
+
+    </button>
 <table>
         <col width=10%>
         <col width=10%>
@@ -28,42 +31,42 @@
         </tr>
         <tr class="d-flex">
           <td>Fick Room Air</td>
-          <td><div class='fra-qp'>test</div></td>
-          <td><div class='fra-qep'>-</div></td>
-          <td><div class='fra-qs'>test</div></td>
-          <td><div class='fra-qes'>-</div></td>
-          <td><div class='fra-qpqs'>test</div></td>
-          <td><div class='fra-qepqes'>-</div></td>
-          <td><div class='fra-qepqs'>-</div></td>
-          <td><div class='fra-pvr'>test</div></td>
-          <td><div class='fra-svr'>test</div></td>
-          <td><div class='fra-rprs'>test</div></td>
+          <td><div class='fra_qp'>{{ fra_qp }}</div></td>
+          <td><div class='fra_qep'>-</div></td>
+          <td><div class='fra_qs'>{{ fra_qs }}</div></td>
+          <td><div class='fra_qes'>-</div></td>
+          <td><div class='fra_qpqs'>{{ fra_qpqs }}</div></td>
+          <td><div class='fra_qepqes'>-</div></td>
+          <td><div class='fra_qepqs'>-</div></td>
+          <td><div class='fra_pvr'>{{ fra_pvr }}</div></td>
+          <td><div class='fra_svr'>{{ fra_svr }}</div></td>
+          <td><div class='fra_rprs'>{{ fra_rprs }}</div></td>
         </tr>
         <tr class="d-flex">
           <td>Fick Nitric Oxide</td>
-          <td><div class='fno-qp'>test</div></td>
-          <td><div class='fno-qep'>-</div></td>
-          <td><div class='fno-qs'>test</div></td>
-          <td><div class='fno-qes'>-</div></td>
-          <td><div class='fno-qpqs'>test</div></td>
-          <td><div class='fno-qepqes'>-</div></td>
-          <td><div class='fno-qepqs'>-</div></td>
-          <td><div class='fno-pvr'>test</div></td>
-          <td><div class='fno-svr'>test</div></td>
-          <td><div class='fno-rprs'>test</div></td>
+          <td><div class='fno_qp'>{{ fno_qp }}</div></td>
+          <td><div class='fno_qep'>-</div></td>
+          <td><div class='fno_qs'>{{ fno_qs }}</div></td>
+          <td><div class='fno_qes'>-</div></td>
+          <td><div class='fno_qpqs'>{{ fno_qpqs }}</div></td>
+          <td><div class='fno_qepqes'>-</div></td>
+          <td><div class='fno_qepqs'>-</div></td>
+          <td><div class='fno_pvr'>{{ fno_pvr }}</div></td>
+          <td><div class='fno_svr'>{{ fno_svr }}</div></td>
+          <td><div class='fno_rprs'>{{ fno_rprs }}</div></td>
         </tr>
         <tr class="d-flex">
           <td>MR Flow</td>
-          <td><div class='fl-qp'>test</div></td>
-          <td><div class='fl-qep'>test</div></td>
-          <td><div class='fl-qs'>test</div></td>
-          <td><div class='fl-qes'>test</div></td>
-          <td><div class='fl-qpqs'>test</div></td>
-          <td><div class='fl-qepqes'>test</div></td>
-          <td><div class='fl-qepqs'>test</div></td>
-          <td><div class='fl-pvr'>test</div></td>
-          <td><div class='fl-svr'>test</div></td>
-          <td><div class='fl-rprs'>test</div></td>
+          <td><div class='fl_qp'>{{ fl_qp }}</div></td>
+          <td><div class='fl_qep'>{{ fl_qep }}</div></td>
+          <td><div class='fl_qs'>{{ fl_qs }}</div></td>
+          <td><div class='fl_qes'>{{ fl_qes }}</div></td>
+          <td><div class='fl_qpqs'>{{ fl_qpqs }}</div></td>
+          <td><div class='fl_qepqes'>{{ fl_qepqes }}</div></td>
+          <td><div class='fl_qepqs'>{{ fl_qepqs }}</div></td>
+          <td><div class='fl_pvr'>{{ fl_pvr }}</div></td>
+          <td><div class='fl_svr'>{{ fl_svr }}</div></td>
+          <td><div class='fl_rprs'>{{ fl_rprs }}</div></td>
         </tr>
         
         </table>

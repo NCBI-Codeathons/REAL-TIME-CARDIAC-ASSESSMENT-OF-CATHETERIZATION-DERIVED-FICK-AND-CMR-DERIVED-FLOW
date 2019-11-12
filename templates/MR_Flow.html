@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>MR Flow</h3>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<p>&nbsp;</p>
+<div id="content">
+
+<form action="/MR_Flow" method="post" >
+
+  <table style="width: 600px">
+
+    <tr>
+      <td>Patient ID:</td>
+      <td><input type="text" name="pat_id" value="{{ request.form['pat_id'] }}"></td>
+    </tr>
+
+    <tr>
+      <td>Body Surface Area:</td>
+      <td><input type="number" step=0.01 name="BSA" value="{{ request.form['BSA']}}"></td>
+    </tr>
+
+    <tr>
+        <td>Heart Rate:</td>
+        <td><input type="number" step=0.01 name="HR" value="{{ request.form['HR'] }}"></td>
+    </tr>
+
+
+    <tr>
+        <td>Ascending Aortic Valve (AoV, AscAo):</td>
+        <td><input type="number" step=0.01 name="AoV" value="{{ request.form['AoV'] }}"></td>
+      </tr>
+  
+    <tr>
+        <td>Descending Aortic Valve (DAo, DscAo):</td>
+        <td><input type="number" step=0.01 name="DAo" value="{{ request.form['DAo'] }}"></td>
+    </tr>
+
+    <tr>
+      <td>SVC:</td>
+      <td><input type="number" step=0.01 name="SVC" value="{{ request.form['SVC'] }}"></td>
+    </tr>
+
+    <tr>
+      <td>IVC:</td>
+      <td><input type="number" step=0.01 name="IVC" value="{{ request.form['IVC'] }}"></td>
+    </tr>
+  
+    <tr>
+      <td>RPA:</td>
+      <td><input type="number" step=0.01 name="RPA" value="{{ request.form['RPA'] }}"></td>
+    </tr>
+
+    <tr>
+        <td>RPV:</td>
+        <td><input type="number" step=0.01 name="RPV" value="{{ request.form['RPV'] }}"></td>
+    </tr>
+
+    <tr>
+        <td>LPA:</td>
+        <td><input type="number" step=0.01 name="LPA" value="{{ request.form['LPA'] }}"></td>
+    </tr>
+
+    <tr>
+        <td>LPV:</td>
+        <td><input type="number" step=0.01 name="LPV" value="{{ request.form['LPV'] }}"></td>
+    </tr>
+
+    <tr>
+      <td>RUPV:</td>
+      <td><input type="number" step=0.01 name="RUPV" value="{{ request.form['RUPV'] }}"></td>
+    </tr>
+
+    <tr>
+      <td>LUPV:</td>
+      <td><input type="number" step=0.01 name="LUPV" value="{{ request.form['LUPV'] }}"></td>
+    </tr>
+
+    <tr>
+      <td><input type="submit" class="btn btn-default btn-sm" value="Calculate"></td>
+    </tr>
+
+  </table>
+
+</form> 
+
+{{err_msg}}
+<hr>
+
+<h3>Calculated Collateral Amounts: </h3>
+<hr>
+
+<div id='collat_content'>
+  <table class='collatAmt_table' style="width:600px">
+    <tr>
+      <td align="right">Method 1 Amt: </td>
+      <td align="left">{{ collat_m1 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m1p1 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m1p2 }}</td>
+    </tr>
+    <tr>
+      <td align="right">Method 1 Amt: </td>
+      <td align="left">{{ collat_m2 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m2p1 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m2p2 }}</td>
+    </tr>
+    <tr>
+      <td align="right">Method 3 Amt: </td>
+      <td align="left">{{ collat_m2 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m3p1 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m3p2 }}</td>
+    </tr>
+    <tr>
+      <td align="right">Method 4 Amt: </td>
+      <td align="left">{{ collat_m4 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m4p1 }}</td>
+      <td align="right">% Type 1: </td>
+      <td align="left">{{ collat_m4p2 }}</td>
+    </tr>
+  </table>
+</div>
+
+
+<h3>Calculated Flow Values: </h3>
+<hr>
+
+<div id='collat_content'>
+
+  <table class='collatAmt_table' style="width:600px">
+    <tr>
+      <td align="right">Qs: </td>
+      <td align="right">M1: </td>
+      <td align="left">{{ collat_m1 }}</td>
+      <td align="right">M2: </td>
+      <td align="left">{{ collat_m1p1 }}</td>
+      <td align="right">M3: </td>
+      <td align="left">{{ collat_m1p2 }}</td>
+      <td align="right">M4: </td>
+      <td align="left">{{ collat_m1p2 }}</td>
+    </tr>
+
+    <tr>
+        <td align="right">Qp: </td>
+        <td align="right">M1: </td>
+        <td align="left">{{ qp_m1 }}</td>
+        <td align="right">M2: </td>
+        <td align="left">{{ qp_m2 }}</td>
+        <td align="right">M3: </td>
+        <td align="left">{{ qp_m3 }}</td>
+        <td align="right">M4: </td>
+        <td align="left">{{ qp_m4 }}</td>
+      </tr>
+
+    <tr>
+        <td align="right">Qes: </td>
+        <td align="right">M1: </td>
+        <td align="left">{{ qes_m1 }}</td>
+        <td align="right">M2: </td>
+        <td align="left">{{ qes_m2 }}</td>
+        <td align="right">M3: </td>
+        <td align="left">{{ qes_m3 }}</td>
+        <td align="right">M4: </td>
+        <td align="left">{{ qes_m4 }}</td>
+    </tr>      
+    
+    <tr>
+        <td align="right">Qep: </td>
+        <td align="right">M1: </td>
+        <td align="left">{{ qep_m1 }}</td>
+        <td align="right">M2: </td>
+        <td align="left">{{ qep_m2 }}</td>
+        <td align="right">M3: </td>
+        <td align="left">{{ qep_m3 }}</td>
+        <td align="right">M4: </td>
+        <td align="left">{{ qep_m4 }}</td>
+    </tr>   
+
+    <tr>
+        <td align="right">QpQs: </td>
+        <td align="right">M1: </td>
+        <td align="left">{{ qpqs_m1 }}</td>
+        <td align="right">M2: </td>
+        <td align="left">{{ qpqs_m2 }}</td>
+        <td align="right">M3: </td>
+        <td align="left">{{ qpqs_m3 }}</td>
+        <td align="right">M4: </td>
+        <td align="left">{{ qpqs_m4 }}</td>
+    </tr>   
+
+    <tr>
+        <td align="right">QepQes: </td>
+        <td align="right">M1: </td>
+        <td align="left">{{ qepqes_m1 }}</td>
+        <td align="right">M2: </td>
+        <td align="left">{{ qepqes_m2 }}</td>
+        <td align="right">M3: </td>
+        <td align="left">{{ qepqes_m3 }}</td>
+        <td align="right">M4: </td>
+        <td align="left">{{ qepqes_m4 }}</td>
+    </tr>   
+
+    <tr>
+        <td align="right">QepQs: </td>
+        <td align="right">M1: </td>
+        <td align="left">{{ qepqs_m1 }}</td>
+        <td align="right">M2: </td>
+        <td align="left">{{ qepqs_m2 }}</td>
+        <td align="right">M3: </td>
+        <td align="left">{{ qepqs_m3 }}</td>
+        <td align="right">M4: </td> 
+        <td align="left">{{ qepqs_m4 }}</td>
+    </tr>  
+
+    <tr>
+      <td>
+              <button class="btn btn-default btn-sm" onclick="window.location.href = 'export_MR_Flow';">Export to CSV</button>
+      </td>
+    </tr>
+
+  </table>
+</div>
+
+
+
+</div>
+{% endblock %}
