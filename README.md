@@ -1,5 +1,30 @@
 # REAL-TIME CARDIAC ASSESSMENT OF CATHETERIZATION-DERIVED FICK AND CMR-DERIVED FLOW
+## INSTALLATION
 
+ - install python 3
+ - add python to your path
+ - If Python is installed correctly, the following command should print the Python version number
+ ```sh
+$ Python --version
+```
+ - In the terminal, go into the project's directory and run the following command to install the requirements
+  ```sh
+$ ...
+```
+ - add FLASK_APP to path
+ ```sh
+$ export FLASK_APP=app.py
+```
+- Run the flask app
+```sh
+$ flask run
+```
+- It shows the address at which the app is deployed. Go to this address on a web browser
+- For production deployment, deploy the app using Nginx + Gunicorn
+
+ 
+
+## BACK GROUND 
 Cardiologists are tasked with the role of determining complex hemodynamic information that is important to determine the need for catheter-based and/or surgical intervention. Today’s standard of care practice involves performing cardiac catheterization and cardiac magnetic resonance (CMR) separately. Catheterization by x-ray is used primarily to collect pressure and saturation data and to intervene on hemodynamically significant holes in the heart. In addition, interventionalists are able to place stents, coils, and percutaneous valves. Meanwhile, CMR is a powerful emerging tool to help cardiologists and CT surgeons answer complex physiology questions by showing very accurate function and flow data.  
 
 Interventional cardiac magnetic resonance (iCMR) is a new approach in congenital cardiology gaining traction around the world. In the US, the National Institutes of Health (NIH) and Children’s Health Dallas are the only two centers currently actively pursuing this research in the congenital heart population. iCMR is like a normal heart catheterization, but the procedure occurs in the MRI magnet instead of the catheterization X-ray lab. It is our hope that a radiation-free heart catheterization will become standard of care for patients in the future. 
